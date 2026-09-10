@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
-    "deploy": "tsc --noEmit && vite build --base /forge-gym/ && gh-pages -d dist"
+    "deploy": "tsc --noEmit && vite build --base /AtomsGym/ && gh-pages -d dist"
   },
   "dependencies": {
     "lucide-react": "^0.469.0",

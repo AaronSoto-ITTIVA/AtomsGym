@@ -25,28 +25,19 @@ npm run preview
 
 ## GitHub Pages
 
-La app usa React Router. En un repo de proyecto (`usuario.github.io/forge-gym/`) hay que publicar con el `base` correcto:
+La app usa React Router. El sitio publicado vive en:
 
-1. Crea un repositorio llamado `forge-gym` (o cambia el nombre en el script `deploy` de `package.json` y en `--base`).
-2. Sube este directorio.
-3. En GitHub: Settings → Pages → Source: `gh-pages`.
-4. Desde esta carpeta:
+https://AaronSoto-ITTIVA.github.io/AtomsGym/
+
+Cada push a `main` dispara GitHub Actions y publica Pages (`VITE_BASE_PATH=/AtomsGym/`).
+
+También puedes publicar a mano:
 
 ```bash
 npm run deploy
 ```
 
-Ese comando hace `vite build --base /forge-gym/` y publica la carpeta `dist`.
-
-Si tu repo tiene **otro nombre**, cambia `/forge-gym/` en `package.json`:
-
-```json
-"deploy": "tsc --noEmit && vite build --base /TU-REPO/ && gh-pages -d dist"
-```
-
 `public/404.html` redirige las rutas profundas (`/routine/pull`, `/equipment/smith-machine`) hacia la SPA.
-
-El QR en `/qr` usa la URL actual del sitio. Cuando esté publicado, apunta a GitHub Pages. También puedes fijar `VITE_APP_URL=https://usuario.github.io/forge-gym`.
 
 ## Estructura de datos
 
