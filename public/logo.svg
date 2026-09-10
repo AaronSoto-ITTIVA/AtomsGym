@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 148" fill="currentColor">
+  <!-- Isotipo ATOM'S GYM: barra + A -->
+  <rect x="14" y="6" width="10" height="26" rx="1.2"/>
+  <rect x="26" y="10" width="7" height="18" rx="1"/>
+  <rect x="37" y="2" width="6" height="34" rx="0.6"/>
+  <rect x="47" y="10" width="7" height="18" rx="1"/>
+  <rect x="56" y="6" width="10" height="26" rx="1.2"/>
+  <path d="M40 42 L63 118 H53.2 L48.4 102 H31.6 L26.8 118 H17 Z M40 56 L34.6 92 H45.4 Z"/>
+  <rect x="29" y="78" width="22" height="7"/>
+  <rect x="14" y="122" width="10" height="20" rx="1.2"/>
+  <rect x="26" y="126" width="7" height="12" rx="1"/>
+  <rect x="37" y="118" width="6" height="28" rx="0.6"/>
+  <rect x="47" y="126" width="7" height="12" rx="1"/>
+  <rect x="56" y="122" width="10" height="20" rx="1.2"/>
+</svg>

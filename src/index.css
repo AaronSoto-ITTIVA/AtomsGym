@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #201c20;
+  color: #f4f1ec;
+  font-family: "Nunito Sans", Avenir, system-ui, sans-serif;
+}
+
+.font-display {
+  font-variant-ligatures: none;
+  font-kerning: normal;
+  letter-spacing: 0.08em;
+  line-height: 1.22;
+}
+
+.safe-bottom {
+  padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.scene {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(252, 188, 16, 0.18), transparent 55%),
+    linear-gradient(180deg, #352e33 0%, #201c20 100%);
+}
+
+.scene-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+}
+
+.figure {
+  display: none;
+}
+
+.demo-fig .move {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.demo-press-h .move,
+.demo-press-v .lift,
+.demo-pull-v .climb {
+  animation: demoLift 1.35s ease-in-out infinite;
+}
+
+.demo-pull-h .row {
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: demoRow 1.25s ease-in-out infinite;
+}
+
+.demo-squat .dip {
+  animation: demoSquat 1.45s ease-in-out infinite;
+}
+
+.demo-hinge .hinge {
+  transform-box: fill-box;
+  transform-origin: 90px 130px;
+  animation: demoHinge 1.5s ease-in-out infinite;
+}
+
+.demo-curl .curl {
+  transform-box: fill-box;
+  transform-origin: top center;
+  animation: demoCurl 1.15s ease-in-out infinite;
+}
+
+.demo-extension .push {
+  animation: demoPush 1.2s ease-in-out infinite;
+}
+
+.demo-fly .fly,
+.demo-raise .raise {
+  animation: demoOpen 1.35s ease-in-out infinite;
+}
+
+.demo-open .open {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: demoSplit 1.4s ease-in-out infinite;
+}
+
+.demo-kickback .kick {
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: demoKick 1.15s ease-in-out infinite;
+}
+
+.demo-lunge .lunge {
+  animation: demoSquat 1.4s ease-in-out infinite;
+}
+
+.demo-lunge .back-shin {
+  transform-box: fill-box;
+  transform-origin: top center;
+  animation: demoLungeShin 1.4s ease-in-out infinite;
+}
+
+.demo-core .plank {
+  animation: demoPlank 1.6s ease-in-out infinite;
+}
+
+.demo-cardio .run {
+  animation: demoBounce 0.7s ease-in-out infinite;
+}
+
+.demo-cardio .leg-a,
+.demo-cardio .leg-b {
+  transform-box: fill-box;
+  transform-origin: top center;
+}
+
+.demo-cardio .leg-a { animation: demoPedal 0.7s linear infinite; }
+.demo-cardio .leg-b { animation: demoPedal 0.7s linear infinite reverse; }
+
+@keyframes demoLift {
+  0%, 100% { transform: translateY(8px); }
+  50% { transform: translateY(-7px); }
+}
+@keyframes demoRow {
+  0%, 100% { transform: translateX(6px); }
+  50% { transform: translateX(-10px); }
+}
+@keyframes demoSquat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(12px); }
+}
+@keyframes demoHinge {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(10deg); }
+}
+@keyframes demoCurl {
+  0%, 100% { transform: translateY(8px); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes demoPush {
+  0%, 100% { transform: translateY(-8px); }
+  50% { transform: translateY(8px); }
+}
+@keyframes demoOpen {
+  0%, 100% { transform: scaleX(0.92); }
+  50% { transform: scaleX(1.06); }
+}
+@keyframes demoSplit {
+  0%, 100% { transform: scaleX(0.88); }
+  50% { transform: scaleX(1.12); }
+}
+@keyframes demoKick {
+  0%, 100% { transform: rotate(-8deg); }
+  50% { transform: rotate(16deg); }
+}
+@keyframes demoLungeShin {
+  0%, 100% { transform: rotate(10deg); }
+  50% { transform: rotate(-16deg); }
+}
+@keyframes demoPlank {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+@keyframes demoBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+@keyframes demoPedal {
+  0% { transform: rotate(16deg); }
+  50% { transform: rotate(-16deg); }
+  100% { transform: rotate(16deg); }
+}
+
+.progress-track {
+  height: 8px;
+  border-radius: 99px;
+  background: #1f1f24;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #fcbc10, #ec2424);
+  box-shadow: 0 0 12px rgba(252, 188, 16, 0.45);
+}

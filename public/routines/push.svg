@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#16161a"/>
+      <stop offset="100%" stop-color="#070708"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#g)"/>
+  <circle cx="640" cy="90" r="160" fill="#c084fc" fill-opacity="0.14"/>
+  <circle cx="120" cy="420" r="120" fill="#c084fc" fill-opacity="0.1"/>
+  <rect x="80" y="70" width="90" height="10" rx="5" fill="#c084fc"/>
+  <text x="80" y="230" fill="#f4f4f5" font-family="Arial Black, Impact, sans-serif" font-size="48">PUSH</text>
+  <text x="80" y="280" fill="#c084fc" font-family="Arial, sans-serif" font-size="22">routines</text>
+  <text x="80" y="440" fill="#9b9ba6" font-family="Arial, sans-serif" font-size="16">Placeholder — sustituye este archivo por un GIF o foto real</text>
+</svg>
