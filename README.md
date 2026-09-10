@@ -27,7 +27,7 @@ npm run preview
 
 La app usa React Router. El sitio publicado vive en:
 
-https://AaronSoto-ITTIVA.github.io/AtomsGym/
+https://aaronsoto-ittiva.github.io/AtomsGym/
 
 Cada push a `main` dispara GitHub Actions y publica Pages (`VITE_BASE_PATH=/AtomsGym/`).
 
