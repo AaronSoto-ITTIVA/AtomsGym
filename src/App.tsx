@@ -12,12 +12,14 @@ import { SearchPage } from './pages/SearchPage'
 import { QRPage } from './pages/QRPage'
 import { WorkoutPage } from './pages/WorkoutPage'
 import { WorkoutCompletePage } from './pages/WorkoutCompletePage'
+import { TermsPage } from './pages/TermsPage'
 
 export default function App() {
   return (
     <Routes>
       <Route element={<AppShell />}>
         <Route path="/" element={<HomePage />} />
+        <Route path="/terms" element={<TermsPage />} />
         <Route path="/routines" element={<RoutinesPage />} />
         <Route path="/routine/:id" element={<RoutineDetailPage />} />
         <Route path="/exercises" element={<ExercisesPage />} />

@@ -6,9 +6,15 @@ import { exercisesById } from '../data/exercises'
 import { equipmentById } from '../data/equipment'
 import { useLevel } from '../lib/level'
 import { routines } from '../data/routines'
+import { exerciseOverviewSrc, exerciseStepSrcs } from '../lib/catalog'
+import { assetUrl } from '../config'
 import { formatRest } from '../lib/search'
 import { levelMeta } from '../lib/levels'
 import { LevelSwitch } from '../components/LevelSwitch'
+import { TermHint } from '../components/TermHint'
+import { ExerciseGuideButton } from '../components/ExerciseGuide'
+import { termsForTechnique } from '../lib/terms'
+import { termsById, type Term } from '../data/terms'
 
 export function ExerciseDetailPage() {
   const { id = '' } = useParams()
@@ -30,13 +36,15 @@ export function ExerciseDetailPage() {
 
   const prescription = sample?.slot.levels[level]
   const meta = levelMeta[level]
+  const overview = exerciseOverviewSrc(exercise.image)
+  const techniqueTerms = termsForTechnique(prescription?.technique)
 
   return (
     <div className="safe-bottom">
       <TopBar backTo="/exercises" />
-      <div className="h-72">
+      <div className="h-64 bg-[#0a0a0c] sm:h-72">
         <ExerciseMedia
-          src={exercise.image}
+          src={overview}
           alt={exercise.name}
           pattern={exercise.pattern}
           title={exercise.name}
@@ -57,33 +65,48 @@ export function ExerciseDetailPage() {
         <div className="grid grid-cols-2 gap-2 text-sm">
           <Meta label="Equipo" value={gear?.name ?? '—'} to={gear ? `/equipment/${gear.id}` : undefined} />
           <Meta label="Dificultad del ejercicio" value={exercise.difficulty} />
-          <Meta label={`Series · ${meta.label}`} value={prescription ? String(prescription.sets) : '3-4'} />
-          <Meta label="Repeticiones" value={prescription?.reps ?? '8-12'} />
-          <Meta label="Descanso" value={prescription ? formatRest(prescription.rest) : '01:30'} />
-          <Meta label="Técnica" value={prescription?.technique ?? 'Ninguna'} />
+          <Meta label={`Series · ${meta.label}`} value={prescription ? String(prescription.sets) : '3-4'} terms={[termsById.serie]} />
+          <Meta label="Repeticiones" value={prescription?.reps ?? '8-12'} terms={[termsById.repeticion]} />
+          <Meta label="Descanso" value={prescription ? formatRest(prescription.rest) : '01:30'} terms={[termsById.descanso]} />
+          <Meta label="Técnica" value={prescription?.technique ?? 'Ninguna'} terms={techniqueTerms} />
         </div>
 
-        <Block title="Ejecución" items={exercise.instructions} ordered />
-        <Block title="Posición inicial" items={exercise.startPosition} ordered />
-        <Block title="Movimiento" items={exercise.movement} ordered />
+        <ExerciseGuideButton exercise={exercise} />
 
-        <section>
-          <h2 className="mb-2 font-display text-2xl uppercase">Respiración</h2>
-          <p className="text-sm leading-relaxed text-mute-strong">{exercise.breathing}</p>
-        </section>
-
-        <Block title="Consejos" items={exercise.tips} />
-        <Block title="Errores comunes" items={exercise.commonMistakes} />
+        {exerciseStepSrcs(exercise.image).map((src, index) => (
+          <figure key={src} className="overflow-hidden rounded-3xl bg-[#0a0a0c]">
+            <img src={assetUrl(src)} alt={`${exercise.name} · paso ${index + 1}`} className="w-full object-contain" />
+            {exercise.instructions[index] ? (
+              <figcaption className="px-4 py-3 text-sm leading-relaxed text-mute-strong">
+                <span className="mr-2 font-extrabold text-gold">{index + 1}.</span>
+                {exercise.instructions[index]}
+              </figcaption>
+            ) : null}
+          </figure>
+        ))}
       </div>
     </div>
   )
 }
 
-function Meta({ label, value, to }: { label: string; value: string; to?: string }) {
+function Meta({
+  label,
+  value,
+  to,
+  terms = [],
+}: {
+  label: string
+  value: string
+  to?: string
+  terms?: Term[]
+}) {
   const content = <p className="text-sm font-semibold">{value}</p>
   return (
     <div className="rounded-2xl bg-ink-800 p-3">
-      <p className="text-[11px] uppercase tracking-wide text-mute">{label}</p>
+      <div className="flex items-center justify-between gap-2">
+        <p className="text-[11px] uppercase tracking-wide text-mute">{label}</p>
+        <TermHint terms={terms} />
+      </div>
       {to ? (
         <Link to={to} className="text-gold">
           {content}
@@ -92,19 +115,5 @@ function Meta({ label, value, to }: { label: string; value: string; to?: string 
         content
       )}
     </div>
-  )
-}
-
-function Block({ title, items, ordered }: { title: string; items: string[]; ordered?: boolean }) {
-  const List = ordered ? 'ol' : 'ul'
-  return (
-    <section>
-      <h2 className="mb-2 font-display text-2xl uppercase">{title}</h2>
-      <List className={`space-y-2 text-sm leading-relaxed text-mute-strong ${ordered ? 'list-decimal pl-5' : 'list-disc pl-5'}`}>
-        {items.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </List>
-    </section>
   )
 }

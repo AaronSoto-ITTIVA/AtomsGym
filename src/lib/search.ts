@@ -1,7 +1,8 @@
 import { equipment, exercises, routines } from './catalog'
+import { trainingTerms } from '../data/terms'
 
 export interface SearchHit {
-  kind: 'routine' | 'exercise' | 'equipment'
+  kind: 'routine' | 'exercise' | 'equipment' | 'term'
   id: string
   title: string
   subtitle: string
@@ -49,6 +50,19 @@ export function searchAll(query: string): SearchHit[] {
         title: item.name,
         subtitle: item.category,
         to: `/equipment/${item.id}`,
+      })
+    }
+  }
+
+  for (const term of trainingTerms) {
+    const blob = [term.name, term.meaning, term.how, term.aliases.join(' ')].join(' ')
+    if (match(blob, q)) {
+      hits.push({
+        kind: 'term',
+        id: term.id,
+        title: term.name,
+        subtitle: term.meaning,
+        to: `/terms#${term.id}`,
       })
     }
   }

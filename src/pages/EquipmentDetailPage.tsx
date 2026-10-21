@@ -26,6 +26,7 @@ export function EquipmentDetailPage() {
           title={item.name}
           muscle={item.primaryMuscles[0]}
           compact
+          cover
         />
       </div>
       <div className="space-y-5 px-4 pt-4">

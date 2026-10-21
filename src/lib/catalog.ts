@@ -37,4 +37,15 @@ export function equipmentUsedInRoutine(routine: Routine, level: Level) {
   return [...ids].map((id) => equipmentById[id]).filter((item): item is NonNullable<typeof item> => Boolean(item))
 }
 
+export function exerciseOverviewSrc(image: string) {
+  if (!/\.png$/i.test(image)) return image
+  return image.replace(/\.png$/i, '-overview.png')
+}
+
+export function exerciseStepSrcs(image: string) {
+  if (!/\.png$/i.test(image)) return []
+  const base = image.replace(/\.png$/i, '')
+  return [1, 2, 3, 4].map((step) => `${base}-step-${step}.png`)
+}
+
 export { equipment, exercises, routines }

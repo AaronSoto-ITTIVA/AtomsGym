@@ -93,7 +93,7 @@ export const routines: Routine[] = [
     duration: { Principiante: 50, Intermedio: 65, Avanzado: 75 },
     muscles: ['Pecho', 'Tríceps'],
     featured: true,
-    image: '/routines/chest-triceps.svg',
+    image: '/routines/chest-triceps.png',
     focus: 'Pecho',
     exercises: [
       slot('barbell-bench-press', compound()),
@@ -113,7 +113,7 @@ export const routines: Routine[] = [
     duration: { Principiante: 55, Intermedio: 70, Avanzado: 80 },
     muscles: ['Espalda', 'Bíceps'],
     featured: true,
-    image: '/routines/back-biceps.svg',
+    image: '/routines/back-biceps.png',
     focus: 'Espalda',
     exercises: [
       slot('pull-up', {
@@ -137,7 +137,7 @@ export const routines: Routine[] = [
     duration: { Principiante: 60, Intermedio: 75, Avanzado: 85 },
     muscles: ['Pierna', 'Cuádriceps', 'Femoral', 'Glúteo'],
     featured: true,
-    image: '/routines/full-legs.svg',
+    image: '/routines/full-legs.png',
     focus: 'Pierna',
     exercises: [
       slot('barbell-squat', compound()),
@@ -152,17 +152,17 @@ export const routines: Routine[] = [
   {
     id: 'glutes-hamstrings',
     name: 'Glúteo y femoral',
-    description: 'Hip thrust, rumano, puente de glúteo, desplante inverso e hiperextensión.',
+    description: 'Hip thrust, rumano, abductores, puente de glúteo, desplante inverso e hiperextensión.',
     duration: { Principiante: 50, Intermedio: 65, Avanzado: 75 },
     muscles: ['Glúteo', 'Femoral'],
     featured: true,
-    image: '/routines/glutes-hamstrings.svg',
+    image: '/routines/glutes-hamstrings.png',
     focus: 'Glúteo',
     exercises: [
       slot('hip-thrust', hyper()),
       slot('romanian-deadlift', compound()),
       slot('lying-leg-curl', isolation()),
-      slot('smith-glute-squat', hyper()),
+      slot('abductors', isolation()),
       slot('glute-bridge', bodywork({ Principiante: { reps: '12-15' } })),
       slot('reverse-lunge', lunge()),
       slot('glute-hyperextension', isolation()),
@@ -175,11 +175,11 @@ export const routines: Routine[] = [
     description: 'Volumen de rodilla: libre, prensa, sentadilla perfecta, Sissy, extensión, desplante y wall sit.',
     duration: { Principiante: 50, Intermedio: 65, Avanzado: 75 },
     muscles: ['Cuádriceps', 'Pierna'],
-    image: '/routines/quads.svg',
+    image: '/routines/quads.png',
     focus: 'Cuádriceps',
     exercises: [
       slot('barbell-squat', compound()),
-      slot('leg-press-quad', hyper()),
+      slot('leg-press', hyper()),
       slot('perfect-squat', hyper()),
       slot('sissy-squat', {
         Principiante: { sets: 2, reps: '8-10 (rango corto)', rest: 90 },
@@ -194,16 +194,16 @@ export const routines: Routine[] = [
   {
     id: 'shoulders-arms',
     name: 'Hombro y brazos',
-    description: 'Press de hombro, laterales y posteriores, curls, tríceps y flexiones pike de peso corporal.',
+    description: 'Press de hombro, laterales, face pull, curls, tríceps y flexiones pike de peso corporal.',
     duration: { Principiante: 50, Intermedio: 65, Avanzado: 75 },
     muscles: ['Hombro', 'Bíceps', 'Tríceps'],
     featured: true,
-    image: '/routines/shoulders-arms.svg',
+    image: '/routines/shoulders-arms.png',
     focus: 'Hombro',
     exercises: [
       slot('dumbbell-shoulder-press', compound()),
       slot('lateral-raise', isolation()),
-      slot('rear-delt-cable', isolation()),
+      slot('face-pull', isolation()),
       slot('incline-curl', hyper()),
       slot('hammer-curl', isolation()),
       slot('overhead-dumbbell-extension', isolation()),
@@ -218,7 +218,7 @@ export const routines: Routine[] = [
     duration: { Principiante: 50, Intermedio: 65, Avanzado: 75 },
     muscles: ['Pecho', 'Hombro', 'Tríceps'],
     featured: true,
-    image: '/routines/push.svg',
+    image: '/routines/push.png',
     focus: 'Push',
     exercises: [
       slot('smith-bench-press', compound()),
@@ -237,7 +237,7 @@ export const routines: Routine[] = [
     duration: { Principiante: 55, Intermedio: 70, Avanzado: 80 },
     muscles: ['Espalda', 'Bíceps'],
     featured: true,
-    image: '/routines/pull.svg',
+    image: '/routines/pull.png',
     focus: 'Pull',
     exercises: [
       slot('pull-up', compound({ Principiante: { reps: 'Máximas asistidas o negativas', rest: 120 } })),
@@ -252,10 +252,10 @@ export const routines: Routine[] = [
   {
     id: 'legs',
     name: 'Legs',
-    description: 'Versión PPL de pierna: sentadilla, prensa, hip thrust, desplante caminando y puente de glúteo.',
+    description: 'Versión PPL de pierna: sentadilla, prensa, hip thrust, desplante inverso y puente de glúteo.',
     duration: { Principiante: 55, Intermedio: 70, Avanzado: 80 },
     muscles: ['Pierna', 'Glúteo', 'Cuádriceps', 'Femoral'],
-    image: '/routines/legs.svg',
+    image: '/routines/legs.png',
     focus: 'Legs',
     exercises: [
       slot('barbell-squat', compound()),
@@ -263,7 +263,7 @@ export const routines: Routine[] = [
       slot('hip-thrust', hyper()),
       slot('lying-leg-curl', isolation()),
       slot('leg-extension', isolation()),
-      slot('walking-lunge', lunge({ Principiante: { reps: '8 por pierna' } })),
+      slot('reverse-lunge', lunge({ Principiante: { reps: '8 por pierna' } })),
       slot('glute-bridge', bodywork({ Principiante: { reps: '12-15' } })),
     ],
   },
@@ -274,7 +274,7 @@ export const routines: Routine[] = [
     duration: { Principiante: 50, Intermedio: 65, Avanzado: 75 },
     muscles: ['Full Body', 'Pierna', 'Pecho', 'Espalda', 'Hombro'],
     featured: true,
-    image: '/routines/full-body.svg',
+    image: '/routines/full-body.png',
     focus: 'Full Body',
     exercises: [
       slot('barbell-squat', compound()),
@@ -293,7 +293,7 @@ export const routines: Routine[] = [
     description: 'Básicos pesados con barra olímpica y Smith: sentadilla, banca, remo, militar y rumano.',
     duration: { Principiante: 55, Intermedio: 70, Avanzado: 80 },
     muscles: ['Full Body', 'Pierna', 'Pecho', 'Espalda', 'Hombro'],
-    image: '/routines/strength.svg',
+    image: '/routines/strength.png',
     focus: 'Fuerza',
     exercises: [
       slot('barbell-squat', strength()),
@@ -315,7 +315,7 @@ export const routines: Routine[] = [
     duration: { Principiante: 45, Intermedio: 50, Avanzado: 55 },
     muscles: ['Full Body'],
     featured: true,
-    image: '/routines/beginners.svg',
+    image: '/routines/beginners.png',
     focus: 'Principiantes',
     exercises: [
       slot('treadmill', {
@@ -363,11 +363,11 @@ export const routines: Routine[] = [
   {
     id: 'bodyweight-lunges',
     name: 'Desplantes',
-    description: 'Peso corporal: sentadilla, desplantes adelante, inverso, caminando y lateral, más step-up y búlgara.',
+    description: 'Peso corporal: sentadilla, desplante adelante, inverso y lateral, más step-up y búlgara.',
     duration: { Principiante: 35, Intermedio: 45, Avanzado: 50 },
     muscles: ['Pierna', 'Glúteo', 'Cuádriceps'],
     featured: true,
-    image: '/routines/bodyweight-lunges.svg',
+    image: '/routines/bodyweight-lunges.png',
     focus: 'Desplantes',
     exercises: [
       slot('bodyweight-squat', {
@@ -377,15 +377,9 @@ export const routines: Routine[] = [
       }),
       slot('reverse-lunge', lunge({ Principiante: { reps: '8 por pierna' } })),
       slot('bodyweight-lunge', lunge()),
-      slot('walking-lunge', lunge({ Principiante: { reps: '8 por pierna' }, Intermedio: { reps: '10 por pierna' } })),
       slot('lateral-lunge', lunge({ Principiante: { reps: '8 por pierna' } })),
       slot('step-up', lunge()),
-      slot('bulgarian-bodyweight', skipBeginner(lunge())),
-      slot('jumping-lunge', {
-        Principiante: null,
-        Intermedio: { sets: 3, reps: '6 por pierna', rest: 75 },
-        Avanzado: { sets: 4, reps: '8-10 alternados', rest: 60, technique: 'Aterrizaje suave, sin perder la postura' },
-      }),
+      slot('bulgarian-split-squat', skipBeginner(lunge())),
     ],
   },
   {
@@ -395,7 +389,7 @@ export const routines: Routine[] = [
     duration: { Principiante: 35, Intermedio: 45, Avanzado: 50 },
     muscles: ['Full Body', 'Pecho', 'Espalda', 'Pierna', 'Core'],
     featured: true,
-    image: '/routines/bodyweight.svg',
+    image: '/routines/bodyweight.png',
     focus: 'Peso corporal',
     exercises: [
       slot('bodyweight-squat', bodywork({ Principiante: { reps: '12' }, Intermedio: { reps: '15' }, Avanzado: { reps: '20' } })),
@@ -411,20 +405,15 @@ export const routines: Routine[] = [
   {
     id: 'cardio',
     name: 'Cardio',
-    description: 'Circuito en caminadora, elíptica, bici y escaladores de peso corporal.',
+    description: 'Circuito en caminadora, elíptica y bicicleta estática.',
     duration: { Principiante: 30, Intermedio: 40, Avanzado: 45 },
     muscles: ['Cardio'],
-    image: '/routines/cardio.svg',
+    image: '/routines/cardio.png',
     focus: 'Cardio',
     exercises: [
       slot('treadmill', cardio('10-12 min')),
       slot('stationary-bike', cardio('10 min')),
       slot('elliptical', cardio('8-10 min')),
-      slot('mountain-climbers', {
-        Principiante: { sets: 3, reps: '20 s suave', rest: 40 },
-        Intermedio: { sets: 3, reps: '30 s', rest: 30 },
-        Avanzado: { sets: 4, reps: '40 s', rest: 20 },
-      }),
     ],
   },
 ]

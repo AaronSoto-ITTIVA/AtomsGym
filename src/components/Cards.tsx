@@ -4,6 +4,7 @@ import { ExerciseMedia } from './ExerciseMedia'
 import { IntensityPips } from './LevelSwitch'
 import { useLevel } from '../lib/level'
 import { levelMeta, summarizeRoutineLevel } from '../lib/levels'
+import { exerciseOverviewSrc } from '../lib/catalog'
 
 const focusPattern: Record<string, MovementPattern> = {
   Pecho: 'press-h',
@@ -52,6 +53,7 @@ export function RoutineCard({ routine }: { routine: Routine }) {
           title={routine.name}
           muscle={routine.focus}
           compact
+          cover
         />
       </div>
       <div className="space-y-2 p-4">
@@ -86,7 +88,7 @@ export function ExerciseCard({ exercise }: { exercise: Exercise }) {
     <Link to={`/exercises/${exercise.id}`} className="overflow-hidden rounded-3xl bg-ink-800">
       <div className="h-40">
         <ExerciseMedia
-          src={exercise.image}
+          src={exerciseOverviewSrc(exercise.image)}
           alt={exercise.name}
           pattern={exercise.pattern}
           title={exercise.name}
@@ -113,6 +115,7 @@ export function EquipmentCard({ item }: { item: Equipment }) {
           title={item.name}
           muscle={item.primaryMuscles[0]}
           compact
+          cover
         />
       </div>
       <div className="p-3">

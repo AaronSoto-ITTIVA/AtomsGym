@@ -4,9 +4,13 @@ import { ExerciseMedia } from '../components/ExerciseMedia'
 import { routinesById } from '../data/routines'
 import { equipmentById } from '../data/equipment'
 import { useLevel } from '../lib/level'
-import { routineExercisesForLevel } from '../lib/catalog'
+import { routineExercisesForLevel, exerciseOverviewSrc } from '../lib/catalog'
 import { formatClock, formatRest } from '../lib/search'
 import { levelMeta } from '../lib/levels'
+import { termsForTechnique } from '../lib/terms'
+import { TermHint } from '../components/TermHint'
+import { ExerciseGuideButton } from '../components/ExerciseGuide'
+import { termsById, type Term } from '../data/terms'
 
 export function WorkoutPage() {
   const { id = '' } = useParams()
@@ -126,10 +130,10 @@ export function WorkoutPage() {
         </div>
       </div>
 
-      <div className="mt-4 h-56 px-4">
+      <div className="mt-4 h-72 px-4">
         <div className="h-full overflow-hidden rounded-3xl">
           <ExerciseMedia
-            src={exercise.image}
+            src={exerciseOverviewSrc(exercise.image)}
             alt={exercise.name}
             pattern={exercise.pattern}
             title={exercise.name}
@@ -143,11 +147,17 @@ export function WorkoutPage() {
         <h1 className="font-display text-[2.15rem] font-bold uppercase">{exercise.name}</h1>
         <p className="text-sm text-mute">{gear?.name} · {exercise.muscleGroup}</p>
         <div className="grid grid-cols-3 gap-2">
-          <Stat label="Serie" value={`${setNumber} / ${prescription.sets}`} />
-          <Stat label="Repeticiones" value={prescription.reps} />
-          <Stat label="Descanso" value={formatRest(prescription.rest)} />
+          <Stat label="Serie" value={`${setNumber} / ${prescription.sets}`} terms={[termsById.serie]} />
+          <Stat label="Repeticiones" value={prescription.reps} terms={[termsById.repeticion]} />
+          <Stat label="Descanso" value={formatRest(prescription.rest)} terms={[termsById.descanso]} />
         </div>
-        {prescription.technique && <p className="text-sm text-gold">{prescription.technique}</p>}
+        {prescription.technique ? (
+          <div className="flex items-center gap-2 rounded-2xl bg-ink-800 px-4 py-3">
+            <p className="flex-1 text-sm text-gold">{prescription.technique}</p>
+            <TermHint terms={termsForTechnique(prescription.technique)} />
+          </div>
+        ) : null}
+        <ExerciseGuideButton exercise={exercise} />
       </div>
 
       <div className="mt-4 px-4">
@@ -218,10 +228,21 @@ export function WorkoutPage() {
   )
 }
 
-function Stat({ label, value }: { label: string; value: string }) {
+function Stat({
+  label,
+  value,
+  terms = [],
+}: {
+  label: string
+  value: string
+  terms?: Term[]
+}) {
   return (
     <div className="rounded-2xl bg-ink-800 p-3">
-      <p className="text-[11px] uppercase tracking-wide text-mute">{label}</p>
+      <div className="flex items-center justify-between gap-2">
+        <p className="text-[11px] uppercase tracking-wide text-mute">{label}</p>
+        <TermHint terms={terms} />
+      </div>
       <p className="font-display text-2xl uppercase leading-none">{value}</p>
     </div>
   )

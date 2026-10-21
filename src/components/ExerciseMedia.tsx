@@ -13,6 +13,7 @@ export function ExerciseMedia({
   muscle,
   className = '',
   compact = false,
+  cover = false,
 }: {
   src: string
   alt: string
@@ -21,6 +22,7 @@ export function ExerciseMedia({
   muscle: string
   className?: string
   compact?: boolean
+  cover?: boolean
 }) {
   const [failed, setFailed] = useState(false)
   const showImage = raster.test(src) && !failed
@@ -30,7 +32,7 @@ export function ExerciseMedia({
       <img
         src={assetUrl(src)}
         alt={alt}
-        className={`h-full w-full object-cover ${className}`}
+        className={`h-full w-full bg-[#0a0a0c] ${cover ? 'object-cover' : 'object-contain'} ${className}`}
         onError={() => setFailed(true)}
       />
     )
