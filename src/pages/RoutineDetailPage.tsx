@@ -10,6 +10,8 @@ import { formatRest } from '../lib/search'
 import { levelMeta, summarizeRoutineLevel } from '../lib/levels'
 import { uniqueTerms } from '../lib/terms'
 import { TermHint } from '../components/TermHint'
+import { ExerciseGuideButton } from '../components/ExerciseGuide'
+import { ExercisePreviewButton } from '../components/ExercisePreview'
 import { termsById, type Term } from '../data/terms'
 
 export function RoutineDetailPage() {
@@ -99,7 +101,7 @@ export function RoutineDetailPage() {
           <h2 className="font-display text-xl uppercase">Ejercicios</h2>
           {rows.map(({ exercise, prescription }) => (
             <div key={exercise.id} className="flex overflow-hidden rounded-3xl bg-ink-800">
-              <Link to={`/exercises/${exercise.id}`} className="flex min-w-0 flex-1 gap-3">
+              <ExercisePreviewButton exercise={exercise} className="flex min-w-0 flex-1 gap-3 text-left">
                 <div className="h-28 w-28 shrink-0">
                   <ExerciseMedia
                     src={exerciseOverviewSrc(exercise.image)}
@@ -125,12 +127,11 @@ export function RoutineDetailPage() {
                     <p className="mt-1 text-xs text-mute">Sin técnica avanzada</p>
                   ) : null}
                 </div>
-              </Link>
-              {prescription.technique ? (
-                <div className="flex items-center pr-3">
-                  <TermHint terms={uniqueTerms([prescription.technique])} />
-                </div>
-              ) : null}
+              </ExercisePreviewButton>
+              <div className="flex flex-col items-center justify-center gap-2 px-3">
+                <ExerciseGuideButton exercise={exercise} variant="icon" />
+                {prescription.technique ? <TermHint terms={uniqueTerms([prescription.technique])} /> : null}
+              </div>
             </div>
           ))}
         </section>

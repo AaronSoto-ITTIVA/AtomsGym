@@ -6,13 +6,13 @@ import { exercisesById } from '../data/exercises'
 import { equipmentById } from '../data/equipment'
 import { useLevel } from '../lib/level'
 import { routines } from '../data/routines'
-import { exerciseOverviewSrc, exerciseStepSrcs } from '../lib/catalog'
-import { assetUrl } from '../config'
+import { exerciseOverviewSrc } from '../lib/catalog'
 import { formatRest } from '../lib/search'
 import { levelMeta } from '../lib/levels'
 import { LevelSwitch } from '../components/LevelSwitch'
 import { TermHint } from '../components/TermHint'
 import { ExerciseGuideButton } from '../components/ExerciseGuide'
+import { ExerciseSteps } from '../components/ExercisePreview'
 import { termsForTechnique } from '../lib/terms'
 import { termsById, type Term } from '../data/terms'
 
@@ -73,17 +73,7 @@ export function ExerciseDetailPage() {
 
         <ExerciseGuideButton exercise={exercise} />
 
-        {exerciseStepSrcs(exercise.image).map((src, index) => (
-          <figure key={src} className="overflow-hidden rounded-3xl bg-[#0a0a0c]">
-            <img src={assetUrl(src)} alt={`${exercise.name} · paso ${index + 1}`} className="w-full object-contain" />
-            {exercise.instructions[index] ? (
-              <figcaption className="px-4 py-3 text-sm leading-relaxed text-mute-strong">
-                <span className="mr-2 font-extrabold text-gold">{index + 1}.</span>
-                {exercise.instructions[index]}
-              </figcaption>
-            ) : null}
-          </figure>
-        ))}
+        <ExerciseSteps exercise={exercise} />
       </div>
     </div>
   )

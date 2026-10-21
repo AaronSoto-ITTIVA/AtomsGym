@@ -6,9 +6,11 @@ import type { Exercise } from '../types'
 export function ExerciseGuideButton({
   exercise,
   className = '',
+  variant = 'full',
 }: {
   exercise: Exercise
   className?: string
+  variant?: 'full' | 'icon'
 }) {
   const [open, setOpen] = useState(false)
   const titleId = useId()
@@ -17,11 +19,20 @@ export function ExerciseGuideButton({
     <>
       <button
         type="button"
-        onClick={() => setOpen(true)}
-        className={`inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold py-3.5 text-sm font-extrabold uppercase tracking-[0.14em] text-ink-950 ${className}`}
+        aria-label="Cómo se hace"
+        onClick={(event) => {
+          event.preventDefault()
+          event.stopPropagation()
+          setOpen(true)
+        }}
+        className={
+          variant === 'icon'
+            ? `grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gold text-ink-950 ${className}`
+            : `inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold py-3.5 text-sm font-extrabold uppercase tracking-[0.14em] text-ink-950 ${className}`
+        }
       >
         <BookOpen size={18} strokeWidth={2.4} />
-        Cómo se hace
+        {variant === 'full' ? 'Cómo se hace' : null}
       </button>
       {open ? <ExerciseGuideDialog exercise={exercise} titleId={titleId} onClose={() => setOpen(false)} /> : null}
     </>

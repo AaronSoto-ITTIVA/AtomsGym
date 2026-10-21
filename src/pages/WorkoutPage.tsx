@@ -10,6 +10,7 @@ import { levelMeta } from '../lib/levels'
 import { termsForTechnique } from '../lib/terms'
 import { TermHint } from '../components/TermHint'
 import { ExerciseGuideButton } from '../components/ExerciseGuide'
+import { ExercisePreviewButton } from '../components/ExercisePreview'
 import { termsById, type Term } from '../data/terms'
 
 export function WorkoutPage() {
@@ -131,16 +132,18 @@ export function WorkoutPage() {
       </div>
 
       <div className="mt-4 h-72 px-4">
-        <div className="h-full overflow-hidden rounded-3xl">
-          <ExerciseMedia
-            src={exerciseOverviewSrc(exercise.image)}
-            alt={exercise.name}
-            pattern={exercise.pattern}
-            title={exercise.name}
-            muscle={exercise.muscleGroup}
-            compact
-          />
-        </div>
+        <ExercisePreviewButton exercise={exercise} className="block h-full w-full overflow-hidden rounded-3xl">
+          <div className="h-full">
+            <ExerciseMedia
+              src={exerciseOverviewSrc(exercise.image)}
+              alt={exercise.name}
+              pattern={exercise.pattern}
+              title={exercise.name}
+              muscle={exercise.muscleGroup}
+              compact
+            />
+          </div>
+        </ExercisePreviewButton>
       </div>
 
       <div className="space-y-3 px-4 pt-4">
@@ -157,7 +160,10 @@ export function WorkoutPage() {
             <TermHint terms={termsForTechnique(prescription.technique)} />
           </div>
         ) : null}
-        <ExerciseGuideButton exercise={exercise} />
+        <div className="grid grid-cols-2 gap-2">
+          <ExercisePreviewButton exercise={exercise} />
+          <ExerciseGuideButton exercise={exercise} />
+        </div>
       </div>
 
       <div className="mt-4 px-4">
